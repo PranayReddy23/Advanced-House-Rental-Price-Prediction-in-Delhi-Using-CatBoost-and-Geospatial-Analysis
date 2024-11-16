@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Rentals Price Prediction in Delhi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Background and font styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-image: url("{{ url_for('static', filename='images/house_image.webp') }}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+        }
+
+/* Center form styling */
+.container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: rgba(255, 255, 255, 0.85); /* Slight transparency */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        /* Label and input styling */
+        label, input, select {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Explore Expected Rental Costs for Houses Across Delhi</h1>
+        <form action="/" method="post">
+            <label>Enter the Location:</label>
+            <input type="text" name="location" placeholder="Enter the Location">
+            
+            <label for="propertyType">Choose a property type:</label>
+            <select id="propertyType" name="property_type">
+                <option value="" disabled selected>Select a property type</option>
+                <option value="Apartment">Apartment</option>
+                <option value="Floor">Floor</option>
+                <option value="House">House</option>
+                <option value="Villa">Villa</option>
+            </select>
+
+            <label for="bhk">Enter the Number of BHK's:</label>
+            <input type="number" id="bhk" name="bhk" placeholder="Enter the no.of BHK's" required>
+
+            <label for="house_size">Enter the House Size (sq_ft):</label>
+            <input type="number" id="house_size" name="house_size" placeholder="Enter the house size (sq_ft)" required>
+
+            <label for="Status">Choose the Property Status:</label>
+            <select id="Status" name="status" class="dropdown" required>
+                <option value="" disabled selected>Select property status</option>
+                <option value="Furnished">Furnished</option>
+                <option value="Semi-Furnished">Semi-Furnished</option>
+                <option value="Unfurnished">Unfurnished</option>
+            </select>
+
+            <label for="deposit_amount">Enter the Security Deposit Amount:</label>
+            <input type="number" id="deposit_amount" name="deposit_amount" placeholder="Enter the security deposit amount" required>
+
+            <label for="no_of_balconies">Enter the Number of Balconies:</label>
+            <input type="number" id="no_of_balconies" name="no_of_balconies" placeholder="Enter the number of balconies" required>
+
+            <label for="no_of_bathrooms">Enter the Number of Bathrooms:</label>
+            <input type="number" id="no_of_bathrooms" name="no_of_bathrooms" placeholder="Enter the number of bathrooms" required>
+
+            <input type="submit" value="Submit">
+        </form>
+        
+        {% if final_result %}
+            <h3>Estimated Price: {{ final_result }} Rs</h3>
+        {% endif %}
+    </div>
+</body>
+</html>
